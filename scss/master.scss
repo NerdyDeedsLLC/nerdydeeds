@@ -1,0 +1,451 @@
+@mixin outerBorder($bdrWt, $bdrClr, $shadowType: "box") {
+    #{#{$shadowType}-shadow}: #{$bdrWt} #{$bdrWt} #{$bdrClr}, -#{$bdrWt} #{$bdrWt} #{$bdrClr}, #{$bdrWt} -#{$bdrWt} #{$bdrClr}, -#{$bdrWt} -#{$bdrWt} #{$bdrClr}, 0 #{$bdrWt} #{$bdrClr}, 0 -#{$bdrWt} #{$bdrClr}, -#{$bdrWt} 0 #{$bdrClr}, #{$bdrWt} 0 #{$bdrClr};
+}
+
+@mixin zigzag($borderSide, $toothSize, $panelColor, $backgroundColor) {
+    $oppositeSide: "top";
+    $bgColor: $backgroundColor;
+    $sawColor: $panelColor;
+    $nudgedPos: #{$toothSize * 1.1};
+
+    @if $borderSide == "top" {
+        $oppositeSide: "bottom";
+        $bgColor: $panelColor;
+        $sawColor: $panelColor;
+
+        transform: scale(1, -1);
+    }
+
+    #{$borderSide}: #{$toothSize * -0.9};
+    background-color: transparent;
+    background: linear-gradient(-135deg, $sawColor #{$toothSize / 2}, transparent 0) 0 #{$toothSize / 2}, linear-gradient(135deg, $sawColor #{$toothSize / 2}, transparent 0) 0 #{$toothSize / 2};
+    background-position: left #{$borderSide}, left #{$borderSide}, #{$oppositeSide};
+    background-repeat: repeat-x;
+    background-size: $toothSize $nudgedPos, $toothSize $nudgedPos, 100% 100%;
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: $toothSize;
+    z-index: 0;
+}
+
+$color1: #b85100;
+$color2: #e7ded8;
+$color3: #dad2cd;
+$color4: #c3bdba;
+$color5: #696567;
+$color6: #383638;
+$color7: #ffffff;
+
+*,
+html,
+body {
+    box-sizing: border-box;
+    font-family: helvetica;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    max-width: 100%;
+    height: 100vh;
+    font-size: 1vw;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    background-color: $color2;
+    color: $color6;
+    padding: 10rem 0 2rem;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 1024px) {
+    article {
+        font-size: 1.45rem;
+    }
+}
+
+header.masthead {
+    // HEADER ===========================================================
+    color: white;
+    position: fixed;
+    height: 9.5rem;
+    top: 0;
+    margin: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+
+    nav {
+        // PRIMARY NAV ---------------------------------------------------------------
+        position: absolute;
+        display: table;
+        background: rgb(224, 214, 207);
+        background: linear-gradient(180deg, rgba(224, 214, 207, 1) 3rem, rgba(224, 214, 207, 0) 10rem);
+        line-height: 1rem;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 10;
+        width: 100%;
+        height: 8rem;
+
+        s {
+            //(pacer)
+            display: table-cell;
+            z-index: -1;
+            color: transparent;
+            background: linear-gradient(90deg, rgba(117, 113, 117, 1) 2px, rgba(224, 214, 207, 0) 2px, rgba(224, 214, 207, 0) calc(100% - 1px), rgba(117, 113, 117, 1) calc(100% - 1px));
+            width: 17%;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            height: 8.5rem;
+        }
+
+        div.nav-block {
+            display: table-cell;
+            width: 41.5%;
+            white-space: nowrap;
+            position: fixed;
+            background-color: $color5;
+            max-height: 8rem;
+            vertical-align: top;
+
+            &.left-block {
+                margin-left: 1px;
+            }
+
+            &.right-block {
+                margin-right: 1px;
+            }
+
+            &::after {
+                @include zigzag("bottom", 1rem, $color5, $color3);
+
+                z-index: -1;
+            }
+        }
+
+        a.primary {
+            display: inline-block;
+            position: relative;
+            vertical-align: top;
+            width: calc(97.5% / 3);
+            font-size: .95rem;
+            line-height: 1.35;
+            text-decoration: none;
+            text-align: center;
+            color: $color6;
+            border: 2px solid transparent;
+            overflow: hidden;
+
+            em {
+                font-size: 130%;
+                font-weight: bold;
+            }
+
+            b {
+                color: $color3;
+                font-size: 1.55rem;
+                line-height: 5;
+                display: block;
+                padding: 0;
+                margin: 0;
+                transition: all 0.3s ease-in;
+            }
+
+            span, .flvr-txt {
+                position: absolute;
+                transition: all 0.2s ease-in;
+                opacity: 0;
+                left: 0;
+                bottom: -100%;
+                margin-left: 50%;
+                padding: 7px;
+                width: 100%;
+                max-width: 12rem;
+                height: auto;
+                border: 1px solid black;
+                background-color: $color6;
+                color: $color4;
+                text-shadow: none;
+                text-align: center;
+                white-space: normal;
+                transform: translate(-50%, 200%) rotate(-725deg);
+            }
+
+            &:hover {
+                border: 2px solid $color3;
+                color: darken($color1, 0%);
+                text-shadow: 0 1px $color6;
+            }
+
+            &.active {
+                color: $color1;
+                z-index: 60000;
+                display: inline-block;
+                white-space: initial;
+                position: relative;
+                width: 33%;
+            }
+
+            &.active,
+            &:hover {
+                z-index: 300;
+                border-radius: 2rem 2rem 0 0;
+                text-shadow: 0 -1px rgba(255, 255, 255, 0.5);
+                overflow: hidden;
+                font-size: 1rem;
+
+                b {
+                    line-height: 2.5;
+                    height: 8.5rem;
+                }
+
+                &:nth-child(1) span, &:nth-child(1) .flvr-txt {
+                    transform: translate(-50%, -45%) rotate(4deg);
+                }
+
+                &:nth-child(2) span, &:nth-child(2) .flvr-txt {
+                    transform: translate(-50%, -15%) rotate(-5deg);
+                }
+
+                &:nth-child(3) span, &:nth-child(3) .flvr-txt {
+                    transform: translate(-50%, -15%) rotate(2deg);
+                }
+            }
+
+            span, .flvr-txt {
+                opacity: 1;
+                bottom: 0;
+                box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+            }
+        }
+    }
+}
+
+.logo-mask {
+    position: relative;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: auto;
+    background: rgba(224, 214, 207, 0);
+    transform: translatex(-50%);
+    width: 17%;
+    height: 10rem;
+    margin-left: 50%;
+    z-index: 100;
+
+    #logo-mask-l {
+        width: 50%;
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        fill: $color5;
+    }
+
+    #logo-mask-r {
+        width: 50%;
+        display: inline-block;
+        position: absolute;
+        fill: $color5;
+        top: 0;
+        right: 0;
+        z-index: 2;
+    }
+
+    &::after {
+        content: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/678043/nerdy-logo-clipped.svg);
+        width: 65%;
+        left: 0;
+        right: 0;
+        height: auto;
+        position: absolute;
+        margin: 1.25rem 0 0 50%;
+        min-height: 8rem;
+        transform: translatex(-50%);
+        z-index: 1;
+    }
+}
+
+main {
+    z-index: 500;
+    max-height: 90rem;
+    
+    height: 100vh;
+   
+   article {
+      height:100%;
+      width: 100%;
+      position:absolute;
+      max-height: calc(100vh - 13rem);
+      margin-bottom:5vh;
+      &#services { 
+         top: 0;
+         border:5px solid rgba(255,0,0,.25);
+         margin-top:9rem;
+      }
+      
+      &#about { 
+         top: 120vh;
+         border:5px solid rgba(255,255,0,.25);
+         margin-top:9rem;
+      }
+      
+      &#why-us { 
+         border:5px solid rgba(0,255, 0,.25);
+         top: 240vh;
+         margin-top:9rem;
+      }
+      
+      &#community { 
+         top: 360vh;
+         border:5px solid rgba(0,255, 255,.25);
+         
+         margin-top:9rem;
+      }
+     
+      &#contact { 
+         top: 480vh;
+                  border:5px solid rgba(0,0, 255,.25);
+
+         margin-top:9rem;
+      }
+      
+      &#booking { 
+         top: 600vh;
+                  border:5px solid rgba(255,0,255,.25);
+
+         margin-top:9rem;
+      }
+   }
+
+//     header.subheader {
+//         background-color: $color4;
+//         padding: 1.25rem 1rem 0 1rem;
+//         width: calc(100% - 3rem);
+//         margin: .0rem 2rem 0 1rem;
+//         border: 0 none;
+//         color: $color6;
+//         font-family: cursive;
+//         font-size: 2rem;
+//         line-height: 1.5rem;
+//         height: 4rem;
+//         position: relative;
+
+//         &::before {
+//             @include zigzag("top", 10px, $color4, $color3);
+//         }
+
+//         &::after {
+//             @include zigzag("bottom", 10px, $color4, $color3);
+//         }
+
+//         nav {
+//             float: none;
+//             margin: -1.5rem 0;
+//             padding: 0 0 0 1rem;
+//             display: block;
+//             line-height: 1;
+
+//             &::before {
+//                 content: "\A";
+//                 white-space: pre;
+//             }
+
+//             a {
+//                 color: $color7;
+//                 margin: 0;
+
+//                 &:last-child {
+//                     color: $color1;
+//                 }
+
+//                 & + a:before {
+//                     content: " - ";
+//                     color: $color2;
+//                 }
+//             }
+//         }
+//     }
+
+//     section {
+//         padding: 1rem;
+//         width: calc(70% - 2rem);
+//         display: inline-block;
+//         vertical-align: text-top;
+
+//         div {
+//             background-color: $color2;
+//             padding: 1.5rem;
+//             height: 14rem;
+
+//             & ~ div {
+//                 margin-top: 1rem;
+//             }
+//         }
+//     }
+
+//     aside {
+//         width: calc(30% - 1rem);
+//         height: 43rem;
+//         padding: 0.5rem 1rem;
+//         margin: 1.5rem 0 0 0;
+//         display: inline-block;
+//         vertical-align: text-top;
+//         border: 0.5rem solid $color4;
+//         background-color: $color3;
+
+//         @include outerBorder(0.5rem, $color2, "box");
+//     }
+}
+
+footer {
+    display: block;
+    background-color: $color4;
+    margin: 0 auto;
+    width: 100%;
+    bottom: 0;
+    padding: 0.1rem 1.5rem 3rem 1.5rem;
+    line-height: 2.5;
+    position: fixed;
+
+    &::before {
+        @include zigzag("top", 1rem, $color4, $color3);
+    }
+
+    span.copyright {
+        padding: 0;
+        margin: 0;
+        top: 0;
+        position: absolute;
+    }
+
+    nav {
+        position: absolute;
+        top: 0;
+        right: 1rem;
+
+        a {
+            color: $color5;
+            padding: 0;
+            margin: 0;
+
+            & + a::before {
+                content: "|";
+                margin: 0 1rem;
+            }
+        }
+    }
+}
