@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Book</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="lib/css/contact.css" type="text/css">
+</head>
+
+<body>
+  <div class="book">
+    <div class="front-cover">
+      <div class="fly-leaf"></div>
+      <div class="coverart">
+        2018/2019<br>CALENDAR
+      </div>
+    </div>
+    <div class="interior">
+      <button>Look up Existing Booking</button>
+      <form id="booking-preflight" method="post" action="/">
+        <div class='wide'>
+          <input type="text" required name='fname' id='fname' class='form-element' placeholder="Your name">
+          <label for="fname" data-val="This field is required, and needs a string value.">Your Name</label>
+        </div>
+        <div class='wide'>
+          <input required type='email' name='email' id='email' class='form-element' placeholder="Email Address">
+          <label for="email" data-val="This field is required, and needs a valid email address.">Email Address</label>
+        </div>
+        <div>
+          <input type="phone" required name='wphone' id='wphone' value='' class='form-element' placeholder="Work Phone Number"></input>
+          <label for="wphone" data-val="This field is required, and needs a US Phone Number.">Workday Phone</label>
+        </div>
+        <div>
+          <input type="phonenumber" required name='hphone' id='hphone' class='form-element' placeholder="Home Phone Number">
+          <label for="hphone">Home Phone</label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="faux-close">
+    <i class="fas fa-times-circle"></i>
+  </div>
+  <div class="device-panel">
+    
+  
+  </div>
+  <script src="lib/js/master.js"></script>
+</body>
+
+</html>

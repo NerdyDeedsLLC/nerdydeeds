@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>NDDDC4.02</title>
-    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="lib/css/master.css">
+    <link rel="stylesheet" href="lib/css/landing.css">
+    <!-- <base href="/"> -->
 </head>
 
 <body>
@@ -31,17 +33,27 @@
             <s>spcr</s>
             <div class="nav-block right-block">
                 <a href="#" class="nav-link primary"><b>Community</b><span>Nerdy deeds... dat <br>been done for free!?</span></a>
-                <a href="#" class="nav-link primary"><b>Contact</b><span>"Complaints dept...<br>dis here is Masher... <br>I'll tranfer youse"</span></a>
+                <a href="contact.html" class="nav-link primary"><b>Contact</b><span>"Complaints dept...<br>dis here is Masher... <br>I'll tranfer youse"</span></a>
                 <a href="#" class="nav-link primary"><b>Nerdy needs?</b><span><em>Book YOUR<br>Geek Week</em><br>(or just talk Nerdy to us)</span></a>
             </div>
         </nav>
     </header>
     <main>
-        <article id="services" class="content-panel"></article>
-        <header class="subheader">
-            Page Header
-        </header>
+        <article id="landing" class="content-panel">
+            <div id="falling1">
+                <img src="/assets/images/gsa_ps4.svg" alt="Macbook Pros" />
+            </div>
+            <div id="signpost">
+                <div>Yup. We fix those.</div>
+                <span class="stake"></span>
+            </div>
+            <div id="shadows"></div>
+        </article>
+        <article id="services" class="content-panel">
         <section>
+            <header class="subheader">
+                Page Header
+            </header>
             <div class="content">Content Block</div>
             <div class="content">Content Block</div>
             <div class="content">Content Block</div>
@@ -65,7 +77,11 @@
             <a href="" class="footer-nav">Footer Nav 4</a>
         </nav>
     </footer>
-    <script src="js/master.js"></script>
+    <script src="lib/js/master.js" type="text/javascript"></script>
+    <script src="lib/js/TweenMax.min.js" type="text/javascript"></script>
+    <script src="lib/js/CustomEase.js" type="text/javascript"></script>
+    <script src="lib/js/GSDevTools.min.js" type="text/javascript"></script>
+    <script src="lib/js/landing.js" type="text/javascript"></script>
 </body>
 
 </html>

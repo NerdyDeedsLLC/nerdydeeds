@@ -1,0 +1,230 @@
+$nd-primary-ltst: #e7ded8;
+$nd-primary-lt: #dad2cd;
+$nd-primary-med: #c3bdba;
+$nd-primary-dk: #696567;
+$nd-primary-dkst: #383638;
+$nd-secondary-lt: #FBC7A3;
+$nd-secondary-dk: #b85100;
+$nd-white: #fff;
+$nd-black: #131213;
+
+@import url('https://fonts.googleapis.com/css?family=Chelsea+Market|Dokdo|Freckle+Face|Gochi+Hand|Nanum+Pen+Script');
+@import url('assets/fonts/LoveYaLikeASister.woff');
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  box-sizing: border-box;
+  font-family: 'Freckle Face';
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  max-width: 100%;
+  height: 100vh;
+  font-size: 1vw;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  background-color: $nd-primary-dkst;
+  color: #383638;
+
+  font-size: 1.2rem;
+}
+
+
+article.device-panel {
+  width: 100vw;
+  font-size: 1rem;
+
+  h2 {
+    font-size: 3rem;
+    text-align: center;
+    width: 100%;
+  }
+
+
+  &>section {
+    position:relative;
+    width: 88vw;
+
+    min-width: 480px;
+    background-color: $nd-primary-med;
+    padding: 5rem 3rem 1rem;
+    margin: 3rem auto 0;
+    border-radius: 16rem;
+    text-align: center;
+    border: 5px solid $nd-black;
+    opacity:.5;
+
+    
+
+    &::before {
+      content: attr(title);
+      display: block;
+      position: absolute;
+      left: 3vw;
+      right: 3vw;
+      top: 1rem;
+      // left: 50%;
+      // transform: translatex(-50%);
+      text-align: center;
+      font-size: 3rem;
+      color: #fff;
+      text-shadow: 2px 0   1px  #000,
+                  -2px 0   1px  #000,
+                   0   2px 1px  #000,
+                   0  -2px 1px  #000,
+                   0   5px 10px rgba(0, 0, 0, .5);
+
+    }
+    &.completed::before {
+        background: var(--tooltip-selection) top right no-repeat;
+        background-size: contain;
+        height:7.5rem;
+    }
+
+    main {
+      display: flex;
+      width: 100%;
+      flex-flow: row wrap;
+      justify-content: center;
+      background-color: $nd-primary-ltst;
+      border-radius: 12rem;
+      padding: 0 2rem;
+      margin-top: 3rem;
+
+      &::before {
+        font-family: 'Love Ya Like A Sister';
+        content: attr(title);
+        display: block;
+        position: absolute;
+        margin: 0 auto;
+        text-shadow: 0 2px 4px #fff;
+        top: 5.0rem;
+        text-align: center;
+        font-size: 1.5rem;
+      }
+
+
+      &>.responsive-row {
+        display: none; // none
+        overflow:hidden;
+        height:0px;
+        transition:.3s all ease-in-out;
+      }
+        a {
+          min-width: 12rem;
+          display: inline-block;
+          text-align: center;
+          padding: 1rem 2rem 1rem 2rem;
+          position:relative;
+          z-index: 1;
+
+
+
+
+          img {
+            width: 16vw;
+            min-width: 82px;
+            max-width: 124px;
+            z-index: 1;
+
+            &.platform-icon {
+              min-width: 140px;
+              max-width: 211px;
+            }
+          }
+
+          &.selected, &:hover {
+            &::after {
+              content:' ';
+              background-color:$nd-white;
+              position: absolute;
+              width:90%;
+              height:70%;
+              top:0;
+              left:5%;
+              z-index: -1;
+              border-radius: 50%;
+              border:1px solid $nd-primary-med;
+            }
+            img{
+              filter:drop-shadow(0 0 0 $nd-black) drop-shadow(0 0 0 $nd-black) contrast(100%);
+            }
+          }
+
+          &.selected {//, &:hover {
+            &::after {
+              background-color:$nd-secondary-lt;
+              border:1px solid $nd-secondary-dk;
+            }
+
+            img {
+              filter:drop-shadow(0 0 0 $nd-secondary-dk) drop-shadow(0 0 0 $nd-secondary-dk) contrast(100%);
+            }
+          }
+        
+      }
+    }
+
+
+    &.completed {
+      border: 5px solid $nd-black;
+      opacity:.5;
+      cursor:pointer;
+
+      &:hover {
+        opacity:1;
+        border-color: $nd-primary-ltst;
+      }
+    }
+    &.selected,
+    &.completed + section:not(.completed) {
+        border-color: $nd-secondary-dk;
+        opacity:1;
+
+        & > main >div.responsive-row {
+          display:flex;
+          overflow:visible;
+          height:auto;
+        
+      }
+    }
+    // &:hover {
+    //   opacity:1;
+    //   border-color:$nd-white;
+
+    //   &.selected, 
+    //   &.completed + section {
+    //     border-color: $nd-secondary-lt;
+    //   }
+
+    //   &.completed {
+    //     border-color: $nd-primary-ltst;
+    //   }
+    // }
+
+  }
+}
+@media (min-width: 1381px) {
+
+  section.completed {
+    & >  main >div.responsive-row {
+        display:flex;
+        overflow:visible;
+        height:auto;
+           
+    }
+
+    &::before {
+      background-image:none !important;
+      height:initial;
+    }
+  }
+}

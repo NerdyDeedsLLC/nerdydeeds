@@ -1,0 +1,198 @@
+@import url("https://fonts.googleapis.com/css?family=Chelsea+Market|Dokdo|Freckle+Face|Gochi+Hand|Nanum+Pen+Script");
+@import url("assets/fonts/LoveYaLikeASister.woff");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html,
+body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Freckle Face';
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  max-width: 100%;
+  height: 100vh;
+  font-size: 1vw;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  background-color: #383638;
+  color: #383638;
+  font-size: 1.2rem;
+}
+
+article.device-panel {
+  width: 100vw;
+  font-size: 1rem;
+}
+
+article.device-panel h2 {
+  font-size: 3rem;
+  text-align: center;
+  width: 100%;
+}
+
+article.device-panel > section {
+  position: relative;
+  width: 88vw;
+  min-width: 480px;
+  background-color: #c3bdba;
+  padding: 5rem 3rem 1rem;
+  margin: 3rem auto 0;
+  border-radius: 16rem;
+  text-align: center;
+  border: 5px solid #131213;
+  opacity: .5;
+}
+
+article.device-panel > section::before {
+  content: attr(title);
+  display: block;
+  position: absolute;
+  left: 3vw;
+  right: 3vw;
+  top: 1rem;
+  text-align: center;
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 2px 0 1px #000, -2px 0 1px #000, 0 2px 1px #000, 0 -2px 1px #000, 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+article.device-panel > section.completed::before {
+  background: var(--tooltip-selection) top right no-repeat;
+  background-size: contain;
+  height: 7.5rem;
+}
+
+article.device-panel > section main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #e7ded8;
+  border-radius: 12rem;
+  padding: 0 2rem;
+  margin-top: 3rem;
+}
+
+article.device-panel > section main::before {
+  font-family: 'Love Ya Like A Sister';
+  content: attr(title);
+  display: block;
+  position: absolute;
+  margin: 0 auto;
+  text-shadow: 0 2px 4px #fff;
+  top: 5.0rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+article.device-panel > section main > .responsive-row {
+  display: none;
+  overflow: hidden;
+  height: 0px;
+  -webkit-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out;
+}
+
+article.device-panel > section main a {
+  min-width: 12rem;
+  display: inline-block;
+  text-align: center;
+  padding: 1rem 2rem 1rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+article.device-panel > section main a img {
+  width: 16vw;
+  min-width: 82px;
+  max-width: 124px;
+  z-index: 1;
+}
+
+article.device-panel > section main a img.platform-icon {
+  min-width: 140px;
+  max-width: 211px;
+}
+
+article.device-panel > section main a.selected::after, article.device-panel > section main a:hover::after {
+  content: ' ';
+  background-color: #fff;
+  position: absolute;
+  width: 90%;
+  height: 70%;
+  top: 0;
+  left: 5%;
+  z-index: -1;
+  border-radius: 50%;
+  border: 1px solid #c3bdba;
+}
+
+article.device-panel > section main a.selected img, article.device-panel > section main a:hover img {
+  -webkit-filter: drop-shadow(0 0 0 #131213) drop-shadow(0 0 0 #131213) contrast(100%);
+          filter: drop-shadow(0 0 0 #131213) drop-shadow(0 0 0 #131213) contrast(100%);
+}
+
+article.device-panel > section main a.selected::after {
+  background-color: #FBC7A3;
+  border: 1px solid #b85100;
+}
+
+article.device-panel > section main a.selected img {
+  -webkit-filter: drop-shadow(0 0 0 #b85100) drop-shadow(0 0 0 #b85100) contrast(100%);
+          filter: drop-shadow(0 0 0 #b85100) drop-shadow(0 0 0 #b85100) contrast(100%);
+}
+
+article.device-panel > section.completed {
+  border: 5px solid #131213;
+  opacity: .5;
+  cursor: pointer;
+}
+
+article.device-panel > section.completed:hover {
+  opacity: 1;
+  border-color: #e7ded8;
+}
+
+article.device-panel > section.selected,
+article.device-panel > section.completed + section:not(.completed) {
+  border-color: #b85100;
+  opacity: 1;
+}
+
+article.device-panel > section.selected > main > div.responsive-row,
+article.device-panel > section.completed + section:not(.completed) > main > div.responsive-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: visible;
+  height: auto;
+}
+
+@media (min-width: 1381px) {
+  section.completed > main > div.responsive-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: visible;
+    height: auto;
+  }
+  section.completed::before {
+    background-image: none !important;
+    height: initial;
+  }
+}

@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand");
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC");
+::-moz-selection {
+  background: transparent;
+}
+::selection {
+  background: transparent;
+}
+
+body {
+  font-family: 'Quicksand';
+  background: #D2BBB0;
+  margin: 0px;
+  padding: 0px;
+}
+
+h4 {
+  font-size: 26px;
+  line-height: 1px;
+  font-family: 'Amatic SC';
+}
+
+.book {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 400px;
+  background: #e0e1dc;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform: translate(-140%, -50%) perspective(1000px) rotate(-65deg) skew(-15deg, 35deg) scalex(0.75);
+          transform: translate(-140%, -50%) perspective(1000px) rotate(-65deg) skew(-15deg, 35deg) scalex(0.75);
+  -webkit-box-shadow: inset 5px -3px 10px rgba(0, 0, 0, 0.5), 0px 10px 10px rgba(0, 0, 0, 0.5);
+          box-shadow: inset 5px -3px 10px rgba(0, 0, 0, 0.5), 0px 10px 10px rgba(0, 0, 0, 0.5);
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.book .front-cover {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-transition: .7s;
+  transition: .7s;
+}
+
+.book .front-cover .fly-leaf {
+  position: absolute;
+  background: #e0e1dc;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  -webkit-transition: .7s;
+  transition: .7s;
+}
+
+.book .front-cover .coverart {
+  text-align: center;
+  padding-top: 15%;
+  padding-left: 22px;
+  font-size: 1.5rem;
+  font-family: Quicksand;
+  font-weight: 900;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+.book .front-cover .coverart::before {
+  content: '2018/2019 APPOINTMENTS';
+  letter-spacing: 3px;
+  padding: 20px 0 0 20px;
+  display: inline-block;
+  position: absolute;
+  z-index: 65;
+  text-shadow: 1px -3px rgba(255, 255, 255, 0.6), -1px 1px rgba(0, 0, 0, 0.6);
+  background-color: #553C0C;
+  color: #553C0C;
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/678043/nerdy-logo-clipped.svg);
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-position: 140% 120%;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.book .front-cover .coverart::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  z-index: 1;
+  width: calc(100% + 195px);
+  height: 100%;
+  left: -165px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  bottom: -12px;
+  right: 0;
+  opacity: 1;
+  background: none;
+  border-right: 338px solid transparent;
+  border-top: 212px solid #000;
+  border-bottom: 200px solid #7d571d;
+  border-left: 290px solid #2a1d0a;
+  border-radius: 30px 20% 50px 0;
+  -webkit-transform: scalex(0.51);
+          transform: scalex(0.51);
+  background-color: transparent;
+}
+
+.book .details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0 0 0 10px;
+  z-index: -1;
+  margin-top: 70px;
+}
+
+.book:hover {
+  -webkit-transform: translate(-50%, -50%) perspective(1000px) rotate(0deg) scale(1.8);
+          transform: translate(-50%, -50%) perspective(1000px) rotate(0deg) scale(1.8);
+  -webkit-box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.5), -30px -10px 100px rgba(0, 0, 0, 0.5);
+          box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.5), -30px -10px 100px rgba(0, 0, 0, 0.5);
+}
+
+.book:hover .front-cover {
+  -webkit-transform: rotateY(-135deg);
+          transform: rotateY(-135deg);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
+.book:hover .front-cover .fly-leaf {
+  opacity: 1;
+  -webkit-transition: .6s;
+  transition: .6s;
+  -webkit-box-shadow: 300px 200px 100px rgba(0, 0, 0, 0.4) inset;
+          box-shadow: 300px 200px 100px rgba(0, 0, 0, 0.4) inset;
+}

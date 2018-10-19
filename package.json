@@ -9,28 +9,38 @@
   "scripts": {
     "test": ""
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NerdyDeedsLLC/nerdydeeds"
+  },
   "keywords": [],
   "author": "Nerdy Deeds, LLC",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.1.2",
+    "async": "^2.6.1",
+    "browser-sync": "^2.26.0",
+    "bulma": "^0.7.2",
+    "gsap": "^2.0.2",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-fn": "0.0.3",
+    "gulp-postcss": "^8.0.0",
     "gulp-run-command": "0.0.9",
+    "gulp-sass": "^4.0.1",
     "gulp-watch": "^5.0.1",
     "known-css-properties": "^0.5.0",
-    "gulp-sass": "^4.0.1",
     "minimatch": "^3.0.2",
-    "sass": "^1.14.1",
-    "browser-sync": "^2.26.0"
+    "moment": "^2.22.2",
+    "request": "^2.88.0",
+    "rucksack-css": "^1.0.2",
+    "sass": "^1.14.1"
   },
   "devDependencies": {
     "gulp-changed": "^3.2.0",
     "gulp-cli": "^2.0.1",
     "gulp-notify": "^3.2.0",
-    "gulp-print": "^5.0.0",
     "gulp-streamify": "^1.0.2"
   }
 }

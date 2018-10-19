@@ -1,0 +1,463 @@
+body {
+  font-family: "Quicksand", helvetica, sans-serif;
+  background: #d2bbb0;
+  margin: 0px;
+  padding: 0px;
+}
+
+.faux-close {
+  position: fixed;
+  top: .5rem;
+  right: 1rem;
+  text-align: right;
+  width: 3rem;
+  height: 3rem;
+  font-size: 3rem;
+  -webkit-transition: all .5s ease-out;
+  transition: all .5s ease-out;
+  opacity: 0;
+}
+
+.faux-close::after, .faux-close::before {
+  content: "";
+  position: absolute;
+  top: 0.05rem;
+  left: -0.15rem;
+  width: 3.3rem;
+  height: 3.3rem;
+  display: block;
+  border-radius: 100%;
+}
+
+.faux-close::before {
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: -2;
+  display: block;
+  -webkit-transform: scalex(0.85) scaley(0.25) translatey(9rem) perspective(1000px);
+          transform: scalex(0.85) scaley(0.25) translatey(9rem) perspective(1000px);
+  -webkit-filter: blur(10px);
+          filter: blur(10px);
+}
+
+.faux-close::after {
+  background-color: #ff3333;
+  z-index: -1;
+  -webkit-box-shadow: inset 0 0 30px white;
+          box-shadow: inset 0 0 30px white;
+}
+
+.book {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 400px;
+  background: #e0e1dc;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform: translate(-140%, -50%) perspective(1000px) rotate(-65deg) skew(-15deg, 35deg) scalex(0.75);
+          transform: translate(-140%, -50%) perspective(1000px) rotate(-65deg) skew(-15deg, 35deg) scalex(0.75);
+  -webkit-box-shadow: inset 5px -3px 10px rgba(0, 0, 0, 0.5), -20px 20px 20px rgba(0, 0, 0, 0.75);
+          box-shadow: inset 5px -3px 10px rgba(0, 0, 0, 0.5), -20px 20px 20px rgba(0, 0, 0, 0.75);
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.book .front-cover {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+}
+
+.book .front-cover .fly-leaf {
+  position: absolute;
+  background: #553c0c;
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+  z-index: 70;
+}
+
+.book .front-cover .coverart {
+  text-align: center;
+  padding-top: 15%;
+  padding-left: 22px;
+  font-size: 1.5rem;
+  font-family: Quicksand;
+  font-weight: 900;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.book .front-cover .coverart::before {
+  content: "2018/2019 APPOINTMENTS";
+  letter-spacing: 3px;
+  padding: 20px 0 0 20px;
+  display: inline-block;
+  position: absolute;
+  z-index: 65;
+  text-shadow: 1px -3px rgba(255, 255, 255, 0.6), -1px 1px rgba(0, 0, 0, 0.6);
+  background-color: #553c0c;
+  color: #553c0c;
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/678043/nerdy-logo-clipped.svg);
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-position: 140% 120%;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-box-shadow: inset 150px 200px 350px rgba(0, 0, 0, 0.25);
+          box-shadow: inset 150px 200px 350px rgba(0, 0, 0, 0.25);
+}
+
+.book .front-cover .coverart::after {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  content: "";
+  display: inline-block;
+  position: absolute;
+  z-index: 1;
+  width: calc(100% + 195px);
+  height: 100%;
+  left: -165px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  bottom: -12px;
+  right: 0;
+  opacity: 1;
+  background: none;
+  border-right: 338px solid transparent;
+  border-top: 212px solid #000;
+  border-bottom: 200px solid #7d571d;
+  border-left: 290px solid #2a1d0a;
+  border-radius: 30px 20% 50px 0;
+  -webkit-transform: scalex(0.51);
+          transform: scalex(0.51);
+  background-color: transparent;
+  -webkit-transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in;
+}
+
+.book:hover {
+  -webkit-transform: translate(-10%, -50%) perspective(1000px) rotate(0deg) scale(2.5);
+          transform: translate(-10%, -50%) perspective(1000px) rotate(0deg) scale(2.5);
+  -webkit-box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.5), 0px 10px 30px rgba(0, 0, 0, 0.5);
+          box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.5), 0px 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.book:hover .front-cover {
+  -webkit-transform: rotateY(-135deg);
+          transform: rotateY(-135deg);
+}
+
+.book:hover .front-cover .fly-leaf {
+  opacity: 0.95;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+  -webkit-box-shadow: inset 300px 200px 100px rgba(0, 0, 0, 0.65), 0px 20px 30px rgba(0, 0, 0, 0.3);
+          box-shadow: inset 300px 200px 100px rgba(0, 0, 0, 0.65), 0px 20px 30px rgba(0, 0, 0, 0.3);
+}
+
+.book:hover .front-cover .coverart::after {
+  -webkit-transform: scale(0.51, 0.9);
+          transform: scale(0.51, 0.9);
+}
+
+.book:hover + .faux-close {
+  opacity: 1;
+  -webkit-transition: all 1.5s ease-out;
+  transition: all 1.5s ease-out;
+}
+
+.book .interior {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 25px 15px 25px 35px;
+  z-index: -1;
+  width: 100%;
+  font-size: 7px;
+}
+
+.book .interior button {
+  margin: 0 0 30px 0;
+  font-size: 7px;
+  margin-left: 50%;
+  -webkit-transform: translatex(-50%);
+          transform: translatex(-50%);
+}
+
+form#booking-preflight {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  max-width: 100%;
+  min-width: 100%;
+  width: 100%;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+form#booking-preflight > div {
+  margin: 15px 0 0;
+  padding: 0;
+  position: relative;
+  -webkit-box-flex: 47%;
+      -ms-flex: 47%;
+          flex: 47%;
+  text-align: center;
+}
+
+form#booking-preflight > div.wide {
+  -webkit-box-flex: 100%;
+      -ms-flex: 100%;
+          flex: 100%;
+}
+
+#booking-preflight,
+#booking-preflight * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#booking-preflight div {
+  position: relative;
+}
+
+#booking-preflight div:not(.wide) + div {
+  margin-left: 4%;
+}
+
+#booking-preflight div .form-element {
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  font-size: 7px;
+  border-top: 0 none;
+  border-radius: 0;
+  outline: none;
+  width: 0rem;
+  margin: 0 auto;
+  -webkit-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+  height: 14px;
+}
+
+#booking-preflight div .form-element + label {
+  position: absolute;
+  color: #aaa;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  text-align: left;
+  padding: 0.25rem;
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+}
+
+#booking-preflight div .form-element + label::after {
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+  opacity: 1;
+  content: "";
+  border-bottom: 1px solid #ccc;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  position: absolute;
+}
+
+#booking-preflight div .form-element:focus, #booking-preflight div .form-element:not(:placeholder-shown) {
+  border-color: transparent;
+  width: 100%;
+  border-radius: 15px;
+  border-bottom-width: 0px;
+  border-left: 0 none;
+  border-right: 0 none;
+  padding: 0 10px;
+  font-size: 7px;
+}
+
+#booking-preflight div .form-element:focus {
+  background: rgba(255, 255, 255, 0.25) linear-gradient(0deg, rgba(0, 205, 205, 0.5) 0px, rgba(0, 205, 205, 0.5) 1px, rgba(255, 255, 255, 0.1) 1px, rgba(255, 255, 255, 0.75) 100%);
+}
+
+#booking-preflight div .form-element:not(:placeholder-shown):not(:focus) {
+  background: rgba(255, 255, 255, 0) linear-gradient(0deg, #008c00 0px, #008c00 1px, rgba(255, 255, 255, 0) 1px, rgba(255, 255, 255, 0) 100%);
+  border-bottom-color: transparent;
+}
+
+#booking-preflight div .form-element:not(:placeholder-shown):not(:focus):not(:valid) {
+  background: rgba(255, 255, 255, 0) linear-gradient(0deg, #8c0000 0px, #8c0000 1px, rgba(255, 255, 255, 0) 1px, rgba(255, 255, 255, 0) 100%);
+  border-bottom-color: transparent;
+}
+
+#booking-preflight div .form-element:not(:placeholder-shown):not(:focus):not(:valid) ~ label::before {
+  content: "*" attr(data-val);
+  position: absolute;
+  bottom: -17px;
+  left: 8px;
+  display: block;
+  font-size: 90%;
+  background-color: #990D1A;
+  color: #FFF5A2;
+  padding: 0 8px;
+  border-radius: 0 10px;
+}
+
+#booking-preflight div .form-element:focus ~ label, #booking-preflight div .form-element:not(:placeholder-shown) ~ label {
+  margin-top: -12px;
+  margin-left: -5px;
+  font-size: 75%;
+  color: #004a4d;
+  bottom: auto;
+  right: auto;
+}
+
+#booking-preflight div .form-element:focus ~ label::after, #booking-preflight div .form-element:not(:placeholder-shown) ~ label::after {
+  border-bottom-color: transparent;
+}
+
+.help-selection {
+  font-size: 72px;
+  padding: 20px;
+  border: 0 none;
+  border-radius: 10px;
+  margin: 20px;
+  font-family: Font Awesome\ 5 Pro;
+  width: 140px;
+  height: 120px;
+  display: inline-block;
+  line-height: 120px;
+  text-align: center;
+  background-color: white;
+  vertical-align: middle;
+  text-indent: 0;
+}
+
+.help-selection.multi {
+  font-weight: 100;
+  display: inline-block;
+  position: relative;
+}
+
+.help-selection.multi > span:first-child {
+  position: absolute;
+  display: block;
+  display: inline;
+  -webkit-transform: rotate(15deg) translate(180%, 0%);
+          transform: rotate(15deg) translate(180%, 0%);
+  background-color: white;
+  line-height: 1;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.help-selection.multi > span:last-child {
+  position: absolute;
+  display: block;
+  display: inline;
+  top: 0;
+  left: 0;
+  line-height: 1;
+  -webkit-transform: rotate(-15deg) translate(20%, 30%);
+          transform: rotate(-15deg) translate(20%, 30%);
+  z-index: 0;
+}
+
+.device-panel {
+  display: block;
+  text-align: center;
+  -webkit-transform: scale(100%);
+          transform: scale(100%);
+  min-width: 85px;
+}
+
+.device-panel a {
+  display: inline-block;
+  width: calc(calc(100% / 6) - 20px);
+  text-align: center;
+  max-height: 170px;
+  margin: 8px;
+  height: auto;
+  vertical-align: middle;
+}
+
+.device-panel a::after {
+  content: '';
+  display: block;
+  min-width: calc(100% / 6);
+  width: 100%;
+}
+
+.device-panel a img {
+  min-width: 85px;
+}
+
+@media (max-width: 640px) {
+  .device-panel .device-panel {
+    -webkit-transform: scale(100%);
+            transform: scale(100%);
+  }
+  .device-panel .device-panel img {
+    min-width: none !important;
+  }
+}
+
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: transparent;
+}
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: transparent;
+}
+
+:-ms-input-placeholder {
+  /* IE 10+ */
+  color: transparent;
+}
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: transparent;
+}
+
+:placeholder {
+  /* Firefox 18- */
+  color: transparent;
+}
