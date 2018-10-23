@@ -42,7 +42,6 @@ $color7: #ffffff;
 html,
 body {
     box-sizing: border-box;
-    font-family: helvetica;
 }
 
 html,
@@ -51,7 +50,13 @@ body {
     padding: 0;
     width: 100vw;
     max-width: 100%;
-    font-size: 1vw;
+}
+
+html {
+    font-size        : responsive 11px 20px;
+    font-range       : 768px 1280px;
+    box-sizing       : border-box;
+    font-family      : helvetica;
 }
 
 body {
@@ -63,12 +68,6 @@ body {
     color: $color6;
     padding: 10rem 0 2rem;
     font-size: 1.2rem;
-}
-
-@media (max-width: 1024px) {
-    article {
-        font-size: 1.45rem;
-    }
 }
 
 header.masthead {
@@ -86,27 +85,25 @@ header.masthead {
         // PRIMARY NAV ---------------------------------------------------------------
         position: absolute;
         display: table;
-        background: rgb(224, 214, 207);
-        background: linear-gradient(180deg, rgba(224, 214, 207, 1) 3rem, rgba(224, 214, 207, 0) 10rem);
         line-height: 1rem;
         top: 0;
         right: 0;
         left: 0;
         z-index: 10;
         width: 100%;
-        height: 8rem;
+        height: 5rem;
 
         s {
             //(pacer)
             display: table-cell;
             z-index: -1;
             color: transparent;
-            background: linear-gradient(90deg, rgba(117, 113, 117, 1) 2px, rgba(224, 214, 207, 0) 2px, rgba(224, 214, 207, 0) calc(100% - 1px), rgba(117, 113, 117, 1) calc(100% - 1px));
+            background: linear-gradient(90deg, rgba($color5, 1) 2px, rgba($color2, 0) 2px, rgba($color2, 0) calc(100% - 1px), rgba($color5, 1) calc(100% - 1px));
             width: 17%;
             padding: 0;
             margin: 0;
             overflow: hidden;
-            height: 8.5rem;
+            height: 5rem;
         }
 
         div.nav-block {
@@ -115,7 +112,7 @@ header.masthead {
             white-space: nowrap;
             position: fixed;
             background-color: $color5;
-            max-height: 8rem;
+            max-height: 5rem;
             vertical-align: top;
 
             &.left-block {
@@ -138,7 +135,7 @@ header.masthead {
             position: relative;
             vertical-align: top;
             width: calc(97.5% / 3);
-            font-size: .95rem;
+            font-size: .5rem;
             line-height: 1.35;
             text-decoration: none;
             text-align: center;
@@ -153,10 +150,10 @@ header.masthead {
 
             b {
                 color: $color3;
-                font-size: 1.55rem;
-                line-height: 5;
+                font-size: 1.3rem;
+                line-height: 2.5;
                 display: block;
-                padding: 0;
+                padding: 0.5rem 0 1rem;
                 margin: 0;
                 transition: all 0.3s ease-in;
             }
@@ -196,66 +193,66 @@ header.masthead {
                 width: 33%;
             }
 
-            &.active,
-            &:hover {
-                z-index: 300;
-                border-radius: 2rem 2rem 0 0;
-                text-shadow: 0 -1px rgba(255, 255, 255, 0.5);
-                overflow: hidden;
-                font-size: 1rem;
+            // &.active,
+            // &:hover {
+            //     z-index: 300;
+            //     border-radius: 2rem 2rem 0 0;
+            //     text-shadow: 0 -1px rgba(255, 255, 255, 0.5);
+            //     overflow: hidden;
+            //     font-size: 1rem;
 
-                b {
-                    line-height: 2.5;
-                    height: 8.5rem;
-                }
+            //     b {
+            //         line-height: 2.5;
+            //         height: 8.5rem;
+            //     }
 
-                &:nth-child(1) span, &:nth-child(1) .flvr-txt {
-                    transform: translate(-50%, -45%) rotate(4deg);
-                }
+            //     &:nth-child(1) span, &:nth-child(1) .flvr-txt {
+            //         transform: translate(-50%, -45%) rotate(4deg);
+            //     }
 
-                &:nth-child(2) span, &:nth-child(2) .flvr-txt {
-                    transform: translate(-50%, -15%) rotate(-5deg);
-                }
+            //     &:nth-child(2) span, &:nth-child(2) .flvr-txt {
+            //         transform: translate(-50%, -15%) rotate(-5deg);
+            //     }
 
-                &:nth-child(3) span, &:nth-child(3) .flvr-txt {
-                    transform: translate(-50%, -15%) rotate(2deg);
-                }
-            }
+            //     &:nth-child(3) span, &:nth-child(3) .flvr-txt {
+            //         transform: translate(-50%, -15%) rotate(2deg);
+            //     }
+            // }
 
-            span, .flvr-txt {
-                opacity: 1;
-                bottom: 0;
-                box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-            }
+            // span, .flvr-txt {
+            //     opacity: 1;
+            //     bottom: 0;
+            //     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+            // }
         }
     }
 }
 
 .logo-mask {
+    max-width: 17%;
     position: relative;
     top: -10px;
     left: 0;
     right: 0;
-    height: auto;
-    background: rgba(224, 214, 207, 0);
-    transform: translatex(-50%);
-    width: 17%;
-    height: 10rem;
+    transform: translateX(-50%);
     margin-left: 50%;
     z-index: 100;
+    height:5rem;
 
     #logo-mask-l {
-        width: 50%;
+        height:5rem;
         display: inline-block;
         position: absolute;
         top: 0;
         left: 0;
         z-index: 2;
         fill: $color5;
+
     }
 
     #logo-mask-r {
-        width: 50%;
+        height:5rem;
+        
         display: inline-block;
         position: absolute;
         fill: $color5;
@@ -265,19 +262,44 @@ header.masthead {
     }
 
     &::after {
-        content: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/678043/nerdy-logo-clipped.svg);
-        width: 65%;
+        content: url(/assets/images/nerdy-logo-clipped.svg);
         left: 0;
         right: 0;
-        height: auto;
+        top:0;
+        bottom:0;
         position: absolute;
         margin: 1.25rem 0 0 50%;
-        min-height: 8rem;
         transform: translatex(-50%);
         z-index: 1;
+        min-width:50%;
+
+
     }
 }
+@media (max-width: 1280px) {
+    .logo-mask {
+    position: relative;
+    top: -10px;
+    left: 0;
+    right: 0;
+    transform: translateX(-50%);
+    max-width: 17%;
+    margin-left: 50%;
+    z-index: 100;
 
+    #logo-mask-l {
+        width: 50%;
+    }
+
+    #logo-mask-r {
+        width: 50%;
+    }
+
+    &::after {
+        min-width:75%;
+}
+}
+}
 
 main {
     z-index: 500;
@@ -296,7 +318,9 @@ main {
         &:first-child {
             overflow:hidden;
             height:130vh !important;
-
+            & > a > svg {
+                max-width: 15rem;
+            }
         }
 
         @for $i from 2 through 10 {
@@ -458,7 +482,7 @@ footer {
 
     }
 
-    #falling1 {
+    #fallingDevices {
       position  : absolute;
       bottom    : 116vh;
       left      : 50%;

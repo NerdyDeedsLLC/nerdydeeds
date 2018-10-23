@@ -32,28 +32,24 @@ html {
 }
 
 #signpost > div {
-  font-size: 4vw;
-  background: url(/assets/images/bg_woodgrain.svg);
-  background-size: cover;
-  bottom: 0;
-  /* white-space: normal; */
-  /* padding: 0 30px; */
-  color: rgba(221, 207, 189, 0.85);
-  text-shadow: 1px -1px 1px black, -1px 1px 1px white;
   position: relative;
-  max-width: 40vw;
-  overflow: hidden;
   display: block;
-  line-height: 4vw;
-  max-height: 8vw;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  /* text-overflow: unset; */
-  border-radius: 8px;
+  bottom: 0;
+  max-width: 40vw;
+  max-height: 4vmax;
+  min-height: 2vmax;
+  padding: 0.5vmax;
+  overflow: hidden;
+  line-height: 1;
+  font-size: 2vmax;
   text-align: center;
-  -webkit-box-shadow: inset 0 10px 10px rgba(221, 207, 189, 0.5), inset 5px -5px 3px rgba(34, 25, 10, 0.5);
-  box-shadow: inset 0 10px 10px rgba(221, 207, 189, 0.5), inset 5px -5px 3px rgba(34, 25, 10, 0.5);
-  min-height: 52px;
+  color: rgba(221, 207, 189, 0.85);
+  text-shadow: 1px -1px 1px #000, -1px 1px 1px rgba(255, 255, 255, 0.5);
+  background: url("/assets/images/bg_woodgrain.svg");
+  background-size: cover;
+  border-radius: 8px;
+  -webkit-box-shadow: inset 0 10px 10px rgba(221, 207, 189, 0.5), inset 5px -5px 3px rgba(34, 25, 10, 0.5), inset 0 0 100px rgba(34, 25, 10, 0.75);
+          box-shadow: inset 0 10px 10px rgba(221, 207, 189, 0.5), inset 5px -5px 3px rgba(34, 25, 10, 0.5), inset 0 0 100px rgba(34, 25, 10, 0.75);
 }
 
 #signpost .stake {
@@ -72,7 +68,7 @@ html {
 #signpost .stake::before {
   content: '';
   position: absolute;
-  background-image: url(/assets/images/bg_woodgrain.svg);
+  background-image: url("/assets/images/bg_woodgrain.svg");
   background-repeat: repeat;
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg);

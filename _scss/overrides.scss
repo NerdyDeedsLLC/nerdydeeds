@@ -1,66 +1,65 @@
 html {
-  font-size: responsive 16px 32px;
-  font-range: 640px 1280px;
-  box-sizing: border-box;
-    font-family: helvetica;
+    font-size        : responsive 16px 32px;
+    font-range       : 640px 1280px;
+    box-sizing       : border-box;
+    font-family      : helvetica;
 }
 
 #signpost {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 10%) scale(1.5);
-    transform-origin: center bottom;
-    text-align: center;
-    bottom:0;
-    z-index:100;
-	  & > div {
-		    font-size: 4vw;
-		    background: url(/assets/images/bg_woodgrain.svg);
-		    background-size: cover;
-		    bottom: 0;
-		    /* white-space: normal; */
-		    /* padding: 0 30px; */
-		    color: rgba(221, 207, 189, 0.85);
-		    text-shadow: 1px -1px 1px black, -1px 1px 1px white;
-		    position: relative;
-		    max-width: 40vw;
-		    overflow: hidden;
-		    display: block;
-		    line-height: 4vw;
-		    max-height: 8vw;
-		    -webkit-line-clamp: 2;
-		    -webkit-box-orient: vertical;
-		    /* text-overflow: unset; */
-		    border-radius: 8px;
-		    text-align: center;
-		    -webkit-box-shadow: inset 0 10px 10px rgba(221, 207, 189, 0.5), inset 5px -5px 3px rgba(34, 25, 10, 0.5);
-		    box-shadow: inset 0 10px 10px rgba(221, 207, 189, 0.5), inset 5px -5px 3px rgba(34, 25, 10, 0.5);
-		    min-height: 52px;
-		
+    position         : absolute;
+    left             : 50%;
+    transform        : translate(-50%, 10%) scale(1.5);
+    transform-origin : center bottom;
+    text-align       : center;
+    bottom           : 0;
+    z-index          : 100;
 
-  }
-
-  .stake {
-    position: relative;
-    vertical-align: bottom;
-    overflow: hidden;
-    width: 60px;
-    height: 90px;
-    display: inline-block;
-    justify-content:center;
-    margin-left:-20px;
-
-    &::before {
-      content: '';
-      position: absolute;
-      background-image: url(/assets/images/bg_woodgrain.svg);
-
-      background-repeat: repeat;
-      transform: rotate(90deg);
-      background-size: contain;
-      width: 120px;
-      height: 120px;
-      box-shadow: inset 0 10px 10px rgba(#DDCFBD, 0.5), inset -3px -10px 10px rgba(34, 25, 10, 0.5), inset 30px 0 30px rgba(34, 25, 10, 0.75);
+    & > div {
+        position        : relative;
+        display         : block; 
+        bottom          : 0;
+        
+        max-width       : 40vw; 
+        max-height      : 4vmax; 
+        min-height      : 2vmax;
+        padding         : 0.5vmax;
+         
+        overflow        : hidden; 
+        line-height     : 1;
+        font-size       : 2vmax;
+        text-align      : center;
+        color           : rgba(221, 207, 189, 0.85);
+        text-shadow     : 1px -1px 1px #000, -1px 1px 1px rgba(#fff, 0.5);
+        background      : url('/assets/images/bg_woodgrain.svg');
+        background-size : cover;
+        
+        
+        border-radius   : 8px;
+        box-shadow      : inset 0 10px 10px rgba(221, 207, 189, 0.5), inset 5px -5px 3px rgba(34, 25, 10, 0.5), inset 0 0 100px rgba(34, 25, 10, 0.75);
     }
-  }
+
+    .stake {
+        position        : relative;
+        vertical-align  : bottom;
+        overflow        : hidden;
+        width           : 60px;
+        height          : 90px;
+        display         : inline-block;
+        justify-content : center;
+        margin-left     : -20px;
+
+        &::before {
+            content           : '';
+            position          : absolute;
+            background-image  : url('/assets/images/bg_woodgrain.svg');
+
+            background-repeat : repeat;
+            transform         : rotate(90deg);
+            background-size   : contain;
+            width             : 120px;
+            height            : 120px;
+            
+            box-shadow        : inset 0 10px 10px rgba(#DDCFBD, 0.5), inset -3px -10px 10px rgba(34, 25, 10, 0.5), inset 30px 0 30px rgba(34, 25, 10, 0.75);
+        }
+    }
 }

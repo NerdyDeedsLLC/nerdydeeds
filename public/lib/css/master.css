@@ -3,7 +3,6 @@ html,
 body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: helvetica;
 }
 
 html,
@@ -12,7 +11,27 @@ body {
   padding: 0;
   width: 100vw;
   max-width: 100%;
-  font-size: 1vw;
+}
+
+html {
+  font-size: calc(11px + 9 * ((100vw - 768px) / 512));
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: helvetica;
+}
+
+@media screen and (min-width: 1280px) {
+
+  html {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  html {
+    font-size: 11px;
+  }
 }
 
 body {
@@ -24,12 +43,6 @@ body {
   color: #383638;
   padding: 10rem 0 2rem;
   font-size: 1.2rem;
-}
-
-@media (max-width: 1024px) {
-  article {
-    font-size: 1.45rem;
-  }
 }
 
 header.masthead {
@@ -46,28 +59,25 @@ header.masthead {
 header.masthead nav {
   position: absolute;
   display: table;
-  background: #e0d6cf;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(3rem, #e0d6cf), color-stop(10rem, rgba(224, 214, 207, 0)));
-  background: linear-gradient(180deg, #e0d6cf 3rem, rgba(224, 214, 207, 0) 10rem);
   line-height: 1rem;
   top: 0;
   right: 0;
   left: 0;
   z-index: 10;
   width: 100%;
-  height: 8rem;
+  height: 5rem;
 }
 
 header.masthead nav s {
   display: table-cell;
   z-index: -1;
   color: transparent;
-  background: linear-gradient(90deg, #757175 2px, rgba(224, 214, 207, 0) 2px, rgba(224, 214, 207, 0) calc(100% - 1px), #757175 calc(100% - 1px));
+  background: linear-gradient(90deg, #696567 2px, rgba(231, 222, 216, 0) 2px, rgba(231, 222, 216, 0) calc(100% - 1px), #696567 calc(100% - 1px));
   width: 17%;
   padding: 0;
   margin: 0;
   overflow: hidden;
-  height: 8.5rem;
+  height: 5rem;
 }
 
 header.masthead nav div.nav-block {
@@ -76,7 +86,7 @@ header.masthead nav div.nav-block {
   white-space: nowrap;
   position: fixed;
   background-color: #696567;
-  max-height: 8rem;
+  max-height: 5rem;
   vertical-align: top;
 }
 
@@ -109,7 +119,7 @@ header.masthead nav a.primary {
   position: relative;
   vertical-align: top;
   width: calc(97.5% / 3);
-  font-size: .95rem;
+  font-size: .5rem;
   line-height: 1.35;
   text-decoration: none;
   text-align: center;
@@ -125,10 +135,10 @@ header.masthead nav a.primary em {
 
 header.masthead nav a.primary b {
   color: #dad2cd;
-  font-size: 1.55rem;
-  line-height: 5;
+  font-size: 1.3rem;
+  line-height: 2.5;
   display: block;
-  padding: 0;
+  padding: 0.5rem 0 1rem;
   margin: 0;
   -webkit-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
@@ -171,58 +181,21 @@ header.masthead nav a.primary.active {
   width: 33%;
 }
 
-header.masthead nav a.primary.active, header.masthead nav a.primary:hover {
-  z-index: 300;
-  border-radius: 2rem 2rem 0 0;
-  text-shadow: 0 -1px rgba(255, 255, 255, 0.5);
-  overflow: hidden;
-  font-size: 1rem;
-}
-
-header.masthead nav a.primary.active b, header.masthead nav a.primary:hover b {
-  line-height: 2.5;
-  height: 8.5rem;
-}
-
-header.masthead nav a.primary.active:nth-child(1) span, header.masthead nav a.primary.active:nth-child(1) .flvr-txt, header.masthead nav a.primary:hover:nth-child(1) span, header.masthead nav a.primary:hover:nth-child(1) .flvr-txt {
-  -webkit-transform: translate(-50%, -45%) rotate(4deg);
-          transform: translate(-50%, -45%) rotate(4deg);
-}
-
-header.masthead nav a.primary.active:nth-child(2) span, header.masthead nav a.primary.active:nth-child(2) .flvr-txt, header.masthead nav a.primary:hover:nth-child(2) span, header.masthead nav a.primary:hover:nth-child(2) .flvr-txt {
-  -webkit-transform: translate(-50%, -15%) rotate(-5deg);
-          transform: translate(-50%, -15%) rotate(-5deg);
-}
-
-header.masthead nav a.primary.active:nth-child(3) span, header.masthead nav a.primary.active:nth-child(3) .flvr-txt, header.masthead nav a.primary:hover:nth-child(3) span, header.masthead nav a.primary:hover:nth-child(3) .flvr-txt {
-  -webkit-transform: translate(-50%, -15%) rotate(2deg);
-          transform: translate(-50%, -15%) rotate(2deg);
-}
-
-header.masthead nav a.primary span, header.masthead nav a.primary .flvr-txt {
-  opacity: 1;
-  bottom: 0;
-  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-}
-
 .logo-mask {
+  max-width: 17%;
   position: relative;
   top: -10px;
   left: 0;
   right: 0;
-  height: auto;
-  background: rgba(224, 214, 207, 0);
-  -webkit-transform: translatex(-50%);
-          transform: translatex(-50%);
-  width: 17%;
-  height: 10rem;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   margin-left: 50%;
   z-index: 100;
+  height: 5rem;
 }
 
 .logo-mask #logo-mask-l {
-  width: 50%;
+  height: 5rem;
   display: inline-block;
   position: absolute;
   top: 0;
@@ -232,7 +205,7 @@ header.masthead nav a.primary span, header.masthead nav a.primary .flvr-txt {
 }
 
 .logo-mask #logo-mask-r {
-  width: 50%;
+  height: 5rem;
   display: inline-block;
   position: absolute;
   fill: #696567;
@@ -242,17 +215,40 @@ header.masthead nav a.primary span, header.masthead nav a.primary .flvr-txt {
 }
 
 .logo-mask::after {
-  content: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/678043/nerdy-logo-clipped.svg);
-  width: 65%;
+  content: url(/assets/images/nerdy-logo-clipped.svg);
   left: 0;
   right: 0;
-  height: auto;
+  top: 0;
+  bottom: 0;
   position: absolute;
   margin: 1.25rem 0 0 50%;
-  min-height: 8rem;
   -webkit-transform: translatex(-50%);
           transform: translatex(-50%);
   z-index: 1;
+  min-width: 50%;
+}
+
+@media (max-width: 1280px) {
+  .logo-mask {
+    position: relative;
+    top: -10px;
+    left: 0;
+    right: 0;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    max-width: 17%;
+    margin-left: 50%;
+    z-index: 100;
+  }
+  .logo-mask #logo-mask-l {
+    width: 50%;
+  }
+  .logo-mask #logo-mask-r {
+    width: 50%;
+  }
+  .logo-mask::after {
+    min-width: 75%;
+  }
 }
 
 main {
@@ -357,58 +353,62 @@ main article:first-child {
   height: 130vh !important;
 }
 
+main article:first-child > a > svg {
+  max-width: 15rem;
+}
+
 main article:nth-child(2) {
   top: 120vh;
-  border: 5px solid #e34c58;
-  background-color: rgba(227, 76, 88, 0.4);
+  border: 5px solid #33c569;
+  background-color: rgba(51, 197, 105, 0.4);
 }
 
 main article:nth-child(3) {
   top: 240vh;
-  border: 5px solid #3e4252;
-  background-color: rgba(62, 66, 82, 0.4);
+  border: 5px solid #aae6c5;
+  background-color: rgba(170, 230, 197, 0.4);
 }
 
 main article:nth-child(4) {
   top: 360vh;
-  border: 5px solid #0f6c2b;
-  background-color: rgba(15, 108, 43, 0.4);
+  border: 5px solid #16bc89;
+  background-color: rgba(22, 188, 137, 0.4);
 }
 
 main article:nth-child(5) {
   top: 480vh;
-  border: 5px solid #dd180e;
-  background-color: rgba(221, 24, 14, 0.4);
+  border: 5px solid #948368;
+  background-color: rgba(148, 131, 104, 0.4);
 }
 
 main article:nth-child(6) {
   top: 600vh;
-  border: 5px solid #976e14;
-  background-color: rgba(151, 110, 20, 0.4);
+  border: 5px solid #fe51e3;
+  background-color: rgba(254, 81, 227, 0.4);
 }
 
 main article:nth-child(7) {
   top: 720vh;
-  border: 5px solid #0bb56a;
-  background-color: rgba(11, 181, 106, 0.4);
+  border: 5px solid #7ca637;
+  background-color: rgba(124, 166, 55, 0.4);
 }
 
 main article:nth-child(8) {
   top: 840vh;
-  border: 5px solid #1214a0;
-  background-color: rgba(18, 20, 160, 0.4);
+  border: 5px solid #f9cb91;
+  background-color: rgba(249, 203, 145, 0.4);
 }
 
 main article:nth-child(9) {
   top: 960vh;
-  border: 5px solid #36fd46;
-  background-color: rgba(54, 253, 70, 0.4);
+  border: 5px solid #ac20db;
+  background-color: rgba(172, 32, 219, 0.4);
 }
 
 main article:nth-child(10) {
   top: 1080vh;
-  border: 5px solid #764996;
-  background-color: rgba(118, 73, 150, 0.4);
+  border: 5px solid #60a6bd;
+  background-color: rgba(96, 166, 189, 0.4);
 }
 
 footer {
@@ -486,7 +486,7 @@ footer nav a + a::before {
   visibility: hidden;
 }
 
-#landing #falling1 {
+#landing #fallingDevices {
   position: absolute;
   bottom: 116vh;
   left: 50%;
@@ -497,6 +497,6 @@ footer nav a + a::before {
   z-index: 2;
 }
 
-#landing #falling1 img {
+#landing #fallingDevices img {
   max-height: 50vh;
 }
