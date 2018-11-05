@@ -1,10 +1,10 @@
 const d = document,
       w = window // cl   = function(){ console.log.apply(console, arguments); }
 ,
-      qs = searchQS => d.querySelector(searchQS) // qsa  = (searchQS, resSet=d.querySelectorAll(searchQS)) => (resSet==null) ? null : [...resSet]
-// rnd  = (max) => (isNaN(max)) ? -1 : ~~(Math.random()*max)
-,
-      onWinLoad = (eventFn, attachObj = w, eventCollection = {
+      qs = searchQS => d.querySelector(searchQS);
+
+qsa = (searchQS, resSet = d.querySelectorAll(searchQS)) => resSet == null ? null : [...resSet] // rnd  = (max) => (isNaN(max)) ? -1 : ~~(Math.random()*max)
+, onWinLoad = (eventFn, attachObj = w, eventCollection = {
   'addEventListener': 'load',
   'attachEvent': 'onload'
 }, listenerMethods = Object.keys(eventCollection), listenerEvents = Object.values(eventCollection)) => {
@@ -20,7 +20,6 @@ const d = document,
   }
 } // ,onDomLoad = (eventFn) =>                           { onWinLoad(eventFn, d, {'addEventListener':'DOMContentLoaded', 'attachEvent': 'onreadystatechange'}); }
 ;
-
 var path2Assets = '/assets/images/gsa_';
 var assetSuffix = '.svg';
 var devicesList = ['mac-mini', 'mbp', 'ps4', 'xperia', 'mac-pro-tower', 'htc-supersonic'];
@@ -150,6 +149,49 @@ const landingAnimation = () => {
     delay: 1.5,
     clearProps: 'all'
   })])]).kill().addCallback(cycleContent, "+=1");
+};
+
+const stripActiveClassFromObj = obj => {
+  if (null == obj) return false;
+  if (typeof obj === 'string') obj = [obj];
+  obj.forEach(o => {
+    if (null != o) {
+      o.className = o.className.replace(/(\s*)?active(\s*)?/gi, '');
+    }
+  });
+  return true;
+};
+
+const deriveRelatedFootnoteElements = eId => {
+  eId = eId.replace(/\D/gi, '');
+  let triggerObj = d.qs('#footnoteTrigger' + elementId),
+      contentObj = d.qs('#landingFootnote' + elementId);
+  if (null == triggerObj || null == contentObj) throw 'Invalid footnote declaration! Object missing!';
+  return [triggerObj, contentObj];
+};
+
+const onFootnoteTrigger = (triggerObj, closeTier = 0) => {
+  // If we've been called recursively, kill the active footnote
+  if (closeTier === -1) return stripActiveClassFromObj(deriveRelatedFootnoteElements(triggerObj.id)); // If the user clicked one that's already open, trigger the function recursively, targeting that single ID alone.
+
+  if (triggerObj.className.indexOf('active') !== -1) return onFootnoteTrigger(triggerObj, -1); // Find (all) active footnotes, iterate 'em, and strip their active flags if set.
+
+  let activeFootnotes = d.qsa('.footnote.active');
+  activeFootnotes.forEach(f => {
+    if (null == f) throw 'Invalid footnote declaration! Object missing id parameter!';
+
+    if (f.dataset.tier <= closeTier) {
+      stripActiveClassFromObj(deriveRelatedFootnoteElements(f.id));
+    }
+  }); // Finally, grab both elements related to the clicked trigger and slap an active flag on each.
+
+  deriveRelatedFootnoteElements(triggerObj.id).forEach(f => f.className += ' active');
+};
+
+const footnoteInit = () => {
+  d.qsa('.footnoteTrigger').forEach(f => f.addEventListener('click', function () {
+    onFootnoteTrigger(f, f.dataset.tier);
+  }));
 };
 
 onWinLoad(cycleContent);

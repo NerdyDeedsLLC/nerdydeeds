@@ -1,8 +1,8 @@
-const  d    = document
+const   d    = document
        ,w    = window
        // cl   = function(){ console.log.apply(console, arguments); }
        ,qs   = (searchQS) => d.querySelector(searchQS)
-       // qsa  = (searchQS, resSet=d.querySelectorAll(searchQS)) => (resSet==null) ? null : [...resSet]
+       qsa   = (searchQS, resSet=d.querySelectorAll(searchQS)) => (resSet==null) ? null : [...resSet]
        // rnd  = (max) => (isNaN(max)) ? -1 : ~~(Math.random()*max)
        ,onWinLoad = (eventFn, attachObj=w, eventCollection={'addEventListener':'load', 'attachEvent': 'onload'}, listenerMethods=Object.keys(eventCollection), listenerEvents=Object.values(eventCollection)) => {
                                                               if(attachObj[listenerMethods[0]]){ attachObj[listenerMethods[0]](listenerEvents[0], eventFn); }
@@ -19,6 +19,8 @@ var defaultText = 'Yup. We fix those.';
 var cockyPhrase = [null, 'Yup. Those too.', 'Those? We get a LOT of those.', 'No prob, Bob!', 'Those are some of our favorites.', 'Piece o\' cake.', 'We train NEW-HIRES on those.', 'No big deal!', 'Easy-peasy!', 'Roll for initiative!', 'Bring. It. ON.', 'Gotcha covered.', '*YAWN!*', 'Have YOU come to the right place!', 'For fun: see what the Squad of Geeks charges for those'];
 var phraseCount = 0;
 var deviceCount = 0;
+
+
 
 // GSDevTools.create();
 
@@ -100,5 +102,46 @@ const landingAnimation =() => {
         .addCallback(cycleContent, "+=1")
 };
 
+const stripActiveClassFromObj = (obj) => {
+  if(null == obj) return false;
+  if(typeof(obj) === 'string') obj=[obj];
+  obj.forEach(o=>{if(null != o){ o.className = o.className.replace(/(\s*)?active(\s*)?/gi,'');}});
+  return true;
+}
+
+const deriveRelatedFootnoteElements = (eId) => {
+    eId = eId.replace(/\D/gi, '');
+    let triggerObj = d.qs('#footnoteTrigger' + elementId),
+        contentObj = d.qs('#landingFootnote' + elementId);
+    if(null == triggerObj || null == contentObj) throw 'Invalid footnote declaration! Object missing!';
+    return [triggerObj, contentObj];
+}
+
+const onFootnoteTrigger = (triggerObj, closeTier=0) => {
+    // If we've been called recursively, kill the active footnote
+    if(closeTier === -1)
+      return stripActiveClassFromObj(deriveRelatedFootnoteElements(triggerObj.id));
+    
+    // If the user clicked one that's already open, trigger the function recursively, targeting that single ID alone.
+    if(triggerObj.className.indexOf('active') !== -1)
+      return onFootnoteTrigger(triggerObj, -1);
+
+    // Find (all) active footnotes, iterate 'em, and strip their active flags if set.
+    let activeFootnotes = d.qsa('.footnote.active');
+    activeFootnotes.forEach(f=>{
+      if(null == f) throw 'Invalid footnote declaration! Object missing id parameter!';
+      if(f.dataset.tier <= closeTier){
+        stripActiveClassFromObj(deriveRelatedFootnoteElements(f.id));
+      }
+    });
+    // Finally, grab both elements related to the clicked trigger and slap an active flag on each.
+    deriveRelatedFootnoteElements(triggerObj.id).forEach(f=>f.className += ' active');
+}
+
+const footnoteInit = () => {
+  d.qsa('.footnoteTrigger').forEach(f=>f.addEventListener('click', function (){ onFootnoteTrigger(f, f.dataset.tier); }));
+}
+
 
 onWinLoad(cycleContent);
+

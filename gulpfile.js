@@ -1,6 +1,7 @@
-var DESIGN_MODE=true;
+var DESIGN_MODE=true;                                           // Enables browsersync's auto-refresh while in localhost
 
-var PATHS = {
+var PATHS = {                                                   // Paths to distro folders and locations
+    'serverProxy': 'http://localhost:8080',
     'js' : {
         'source': '_js/**/*.js',
         'dest': 'public/lib/js/'
@@ -15,63 +16,40 @@ var PATHS = {
     }
 };
 
-var gulp, notify, gulpFn, pipelogger, watch, changed, sass, babel, autoprefixer, runCLICmd, bs, reload, postcss, rucksack;
+var gulp, sass, babel, autoprefixer, shell, postcss, rucksack, bigBrother, runCLICmd;
 
 gulp         = require('gulp');
-notify       = require("gulp-notify");
-gulpFn       = require('gulp-fn');
 
-watch        = require('gulp-watch');
-changed      = require('gulp-changed');
-sass         = require('gulp-sass');                            // gulp-sass is a very light-weight wrapper around node-sass, which in turn is a Node binding for libsass, which in turn is a port of Sass
-babel        = require("gulp-babel");                           // Automatically converts ES6 code into CommonJS (http://bit.ly/vmu-gulp-babel)
+sass         = require('gulp-sass');                            // Provides CSS PRE-processing (via a light-weight wrapper around node-sass, itself a Node binding for libsass/Sass)
+babel        = require('gulp-babel');                           // Automatically converts ES6 code into CommonJS
 autoprefixer = require('gulp-autoprefixer');                    // Applies prefixes for common and popular platforns and browsers (-ms-, -webkit-)
-runCLICmd    = require('gulp-run-command').default;             // Allows for the execution of Bash shell commands from gulp.
+runCLICmd    = require('gulp-run-command').default;             // Allows for the execution of Bash shell commands directly from gulp.
+shell        = require('gulp-shell');                           // Provides CSS POST-processing
+postcss      = require('gulp-postcss');                         // Provides CSS POST-processing
+rucksack     = require('rucksack-css');                         // CSS Post-processor rules (responsiveness, hex conversions, certain polyfills)
 
-postcss      = require('gulp-postcss');
-rucksack     = require('rucksack-css');
-
-bs           = require('browser-sync').create();                // TODO: Severs any instances already running?
-//bs  = bs.create();                        // Instantiates and executes a perpetual comm link with the browser
-reload       = bs.reload;
-
-function cl(){
-    console.log.apply(console, arguments);
-}
-
-
-var successMsgCount = 0;
-var successMessages = ["ALL SUCCESS COMMENTARY:", "...Now dat's done.", "...Now dat is done also.", "...Dis here? Dis is def'nately doneded.", "...Dis too I have done.", "...Dat is also a ting I has done for you."];
-function SUCCESS_MSG() {
-    // console.log(successMessages[successMsgCount]);
-    successMsgCount = (successMsgCount >= successMessages.length) ? 0 : successMsgCount + 1;
-    return successMessages[successMsgCount];
-}
-
-var errorMsgCount = 0;
-var errorMessages = ["ALL ERROR COMMENTARY:", "D'awwwwww, de boss ain't gonna like dis! We's gots errors!"];
-var errorOutput = "";
-function ERROR_MSG (errInput) {
-    console.log(errorMessages[errorMsgCount]);
-    console.log("Dis is what da compiley man said:\n", errInput);
-    errorMsgCount = (errorMsgCount >= errorMessages.length) ? 0 : errorMsgCount + 1;
-}
+bigBrother   = require('browser-sync').create();                // TODO: Detect and terminate any instances already running?
+ 
+// function cl(){
+//     console.log.apply(console, arguments);
+// }
 
 gulp.task('server', function() {
     if(DESIGN_MODE){
-        bs.init({
+        bigBrother.init({
             server: PATHS.html.dest,
         });
-        bs.notify("<b>Server initialized.</b><br>Serving files from <ul><li>HTML: " + PATHS.html.dest + "</li><li>JS: " + PATHS.js.dest + "</li><li>CSS: " + PATHS.css.dest + "</li></ul>Watching for changes...", 5000);
+        bigBrother.notify('<b>Server initialized.</b><br>Serving files from <ul><li>HTML: ' + PATHS.html.dest + '</li><li>JS: ' + PATHS.js.dest + '</li><li>CSS: ' + PATHS.css.dest + '</li></ul>Watching for changes...', 5000);
 
-        bs.watch(PATHS.html.source).on('change', bs.reload);
-        bs.watch(PATHS.js.source).on('change', build_js);
-        bs.watch(PATHS.js.dest).on('change', bs.reload);
-        bs.watch(PATHS.css.source).on('change', build_css);
-        bs.watch(PATHS.css.dest).on('change', bs.reload);
+        // Big Brother is watching you...
+        bigBrother.watch(PATHS.html.source).on('change', bigBrother.reload);    // BrowserSync is comin' to town!
+        bigBrother.watch(PATHS.js.source).on('change', build_js);               // He sees your code a-changin'
+        bigBrother.watch(PATHS.js.dest).on('change', bigBrother.reload);        // He knows when changes pass!
+        bigBrother.watch(PATHS.css.source).on('change', build_css);             // He can't recover from errors, 
+        bigBrother.watch(PATHS.css.dest).on('change', bigBrother.reload);       // So be sure of your syntax!
     }else{
-        bs.init({
-            proxy: 'http://localhost:8080',
+        bigBrother.init({
+            proxy: PATHS.serverProxy,
         });
     }
 });
@@ -103,16 +81,16 @@ function build_css(){
     .pipe(sass(sassSettings).on('error', sass.logError))
     .pipe(postcss([ rucksack(rucksackSettings) ]))
     .pipe(autoprefixer(autoprefixerSettings))
-    .pipe(bs.stream())
+    .pipe(bigBrother.stream())
     .pipe(gulp.dest(PATHS.css.dest))
-    .on('change', bs.reload);
+    .on('change', bigBrother.reload);
 }
 
 function build_js(){
     return gulp.src(PATHS.js.source)
     .pipe(babel())
     .pipe(gulp.dest(PATHS.js.dest))
-    .on('change', bs.reload);
+    .on('change', bigBrother.reload);
 }
 
 
@@ -125,4 +103,18 @@ gulp.task('js', function() {
     return build_js();
 }); 
 
-gulp.task('default', gulp.parallel('css', 'js', 'server'));
+const shellSettings = {
+    PATH: process.env.PATH,
+    verbose: true,
+    shell: '/usr/local/Cellar/bash/4.4.23/bin/bash'
+};
+
+gulp.task('cleanup', function(){
+    return gulp.src('*.js', {read: false})
+      .pipe(shell([
+        'killall gulp && killall open && echo "Purged all instances of gulp, node, and open."'
+       // 'killall gulp && killall node && killall open && echo "Purged all instances of gulp, node, and open."'
+      ], shellSettings));
+});
+gulp.task('greet', shell.task('echo Hello, World!'));
+gulp.task('default', gulp.parallel('greet', 'css', 'js', 'server'));

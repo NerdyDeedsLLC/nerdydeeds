@@ -359,56 +359,56 @@ main article:first-child > a > svg {
 
 main article:nth-child(2) {
   top: 120vh;
-  border: 5px solid #33c569;
-  background-color: rgba(51, 197, 105, 0.4);
+  border: 5px solid #4594ab;
+  background-color: rgba(69, 148, 171, 0.4);
 }
 
 main article:nth-child(3) {
   top: 240vh;
-  border: 5px solid #aae6c5;
-  background-color: rgba(170, 230, 197, 0.4);
+  border: 5px solid #d0adea;
+  background-color: rgba(208, 173, 234, 0.4);
 }
 
 main article:nth-child(4) {
   top: 360vh;
-  border: 5px solid #16bc89;
-  background-color: rgba(22, 188, 137, 0.4);
+  border: 5px solid #975cf2;
+  background-color: rgba(151, 92, 242, 0.4);
 }
 
 main article:nth-child(5) {
   top: 480vh;
-  border: 5px solid #948368;
-  background-color: rgba(148, 131, 104, 0.4);
+  border: 5px solid #734430;
+  background-color: rgba(115, 68, 48, 0.4);
 }
 
 main article:nth-child(6) {
   top: 600vh;
-  border: 5px solid #fe51e3;
-  background-color: rgba(254, 81, 227, 0.4);
+  border: 5px solid #a8acb2;
+  background-color: rgba(168, 172, 178, 0.4);
 }
 
 main article:nth-child(7) {
   top: 720vh;
-  border: 5px solid #7ca637;
-  background-color: rgba(124, 166, 55, 0.4);
+  border: 5px solid #f4f9af;
+  background-color: rgba(244, 249, 175, 0.4);
 }
 
 main article:nth-child(8) {
   top: 840vh;
-  border: 5px solid #f9cb91;
-  background-color: rgba(249, 203, 145, 0.4);
+  border: 5px solid #37378e;
+  background-color: rgba(55, 55, 142, 0.4);
 }
 
 main article:nth-child(9) {
   top: 960vh;
-  border: 5px solid #ac20db;
-  background-color: rgba(172, 32, 219, 0.4);
+  border: 5px solid #855a50;
+  background-color: rgba(133, 90, 80, 0.4);
 }
 
 main article:nth-child(10) {
   top: 1080vh;
-  border: 5px solid #60a6bd;
-  background-color: rgba(96, 166, 189, 0.4);
+  border: 5px solid #576cc8;
+  background-color: rgba(87, 108, 200, 0.4);
 }
 
 footer {
